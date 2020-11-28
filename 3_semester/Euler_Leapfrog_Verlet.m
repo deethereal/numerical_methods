@@ -46,23 +46,26 @@ plot(T,(0.5*V.^2 - cos(X)))
 
 
 %Verlet
-v=v0;
-x=x0+h*v+0.5*h^2*(-sin(x0));
-V=v0;
-X=[x0 x];
-x_old=x0;
-for n=1:N
-    x_new=2*x-x_old+h^2*(-sin(x_old));
-    v_new=(x_new-x_old)/(2*h);
-    V=[V v_new];
-    X=[X x_new];
-    x_old=x;
-    x=x_new;
-    v=v_new;
-end
-figure(3)
-subplot(2,1,1);
-plot(X(1:length(X)-1),V)
-subplot(2,1,2);
-T = 0:h:10; 
+v=v0; 
+x_old=x0; 
+x=x0+h*v+0.5*h^2*(-sin(x0)); 
+V=v0; 
+X=[x0, x]; 
+
+for n=1:N 
+x_new=2*x-x_old+h^2*(-sin(x)); 
+v_new=(x_new-x_old)/(2*h); 
+
+V=[V, v_new]; 
+X=[X, x_new]; 
+x_old=x; 
+x=x_new; 
+v=v_new; 
+end 
+
+figure(3) 
+subplot (2, 1, 1) 
+plot (X(1:length(X)-1), V) 
+subplot(2, 1, 2); 
+T = 0:h:N*h; 
 plot(T,(0.5*V.^2 - cos(X(1:length(X)-1))))
