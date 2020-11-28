@@ -9,14 +9,14 @@ h = 1/N;
 
 Y = y_0;
 y = y_0;
-%явно
+%я▐п╡п╫п╬
 %for n=1:(6*N)
     %y_new = y + h * func((n-1)*h, y);
     %y = y_new;
     %Y = [Y, y];
 %end
 
-%неявно
+%п╫п╣я▐п╡п╫п╬
 for n=1:6*N
     fun =@(y_new) y_new - y - h * func(n*h, y_new);
     y_new = fzero(fun, y);
